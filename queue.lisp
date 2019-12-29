@@ -4,7 +4,7 @@
    :make-queue
    :enqueue
    :dequeue
-   :print-queue
+   :queue-to-list
    :queue-empty-p
    :queue-size))
 
@@ -48,11 +48,10 @@
       (decf size)
       return-value)))
 
-(defun print-queue (queue &optional (num-elements 5))
-  (let ((subqueue (subseq (queue-head queue)
-                          0
-                          (min (queue-size queue) num-elements))))
-    (format t "(~{~A~^ ~})" subqueue)))
+(defun queue-to-list (queue &optional (num-elements (queue-size queue)))
+  (subseq (queue-head queue)
+          0
+          (min (queue-size queue) num-elements)))
 
 (defmethod print-object ((queue queue) stream)
   (print-unreadable-object (queue stream :type t :identity t)

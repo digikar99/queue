@@ -32,6 +32,12 @@
   (let ((queue (make-queue 1 2)))
     (prove:isnt (queue-empty-p queue) t)))
 
+(deftest queue-to-list
+  (let ((queue (make-queue 2 3 4)))
+    (is (queue-to-list queue) '(2 3 4))
+    (is (queue-to-list queue 2) '(2 3))
+    (is (queue-to-list queue 0) '())))
+
 
 
 
