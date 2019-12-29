@@ -48,8 +48,11 @@
       (decf size)
       return-value)))
 
-;;; Overriding print-object can cause inconvenience while using large queues.
-(defun print-queue (queue) (write (queue-head queue)))
+(defun print-queue (queue &optional (num-elements 5))
+  (let ((subqueue (subseq (queue-head queue)
+                          0
+                          (min (queue-size queue) num-elements))))
+    (format t "(~{~A~^ ~})" subqueue)))
 
 (defmethod print-object ((queue queue) stream)
   (print-unreadable-object (queue stream :type t :identity t)
