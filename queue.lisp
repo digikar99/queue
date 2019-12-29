@@ -50,3 +50,7 @@
 
 ;;; Overriding print-object can cause inconvenience while using large queues.
 (defun print-queue (queue) (write (queue-head queue)))
+
+(defmethod print-object ((queue queue) stream)
+  (print-unreadable-object (queue stream :type t :identity t)
+    (format stream "HEAD ~D" (first (queue-head queue)))))
