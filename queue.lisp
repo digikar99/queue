@@ -4,6 +4,7 @@
    :make-queue
    :enqueue
    :dequeue
+   :queue
    :queue-to-list
    :queue-empty-p
    :queue-size))
